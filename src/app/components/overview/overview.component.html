@@ -1,9 +1,19 @@
-<div class="row">
-    <ul *ngFor="let assessment of assessments" style="list-style: none;">
-        <li>
-            <div style="padding: 15px;">
-                <app-assessment></app-assessment>
+<app-topbar></app-topbar>
+<div class="fluid-container">
+    <div class="row">
+        <div class="col-md-auto">
+            <app-sidebar></app-sidebar>
+        </div>
+        <div class="col">
+            <div class="row">
+                <ul *ngFor="let assessment of assessments" style="list-style: none;">
+                    <li>
+                        <div style="padding: 15px;">
+                            <app-assessment [assessment]="assessment"></app-assessment>
+                        </div>
+                    </li>
+                </ul>
             </div>
-        </li>
-    </ul>
+        </div>
+    </div>
 </div>
