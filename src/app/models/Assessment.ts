@@ -1,10 +1,12 @@
+import { firestore } from 'firebase';
+
 export class Assessment {
     title: string;
     description: string;
     principal: string;
     client: string;
-    applied: Date;
-    deadline: Date;
+    applied: firestore.Timestamp;
+    deadline: firestore.Timestamp;
     status: string;
 
     toPlainObj(): object {
