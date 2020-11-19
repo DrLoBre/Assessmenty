@@ -26,12 +26,6 @@ export class OverviewComponent implements OnInit {
     this.assessmentService.getAssessments().subscribe(assessments => {
       this.assessments = assessments;
     });
-    this.authService.getUserState().subscribe(user => {
-      this.user = user;
-      this.authService.getUserEntry(this.user.uid).subscribe(userData => {
-        this.role = userData.role;
-      });
-    });
   }
 
 }
