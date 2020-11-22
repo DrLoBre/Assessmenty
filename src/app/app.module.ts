@@ -4,6 +4,7 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { AngularFireAuthModule, AngularFireAuth } from 'angularfire2/auth';
 import { FormsModule } from '@angular/forms';
+import { NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -14,7 +15,6 @@ import { AssessmentComponent } from './components/assessment/assessment.componen
 import { environment } from 'src/environments/environment';
 import { RegistrationComponent } from './components/auth/registration/registration.component';
 import { LoginComponent } from './components/auth/login/login.component';
-import { from } from 'rxjs';
 
 
 @NgModule({
@@ -33,7 +33,8 @@ import { from } from 'rxjs';
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
     AngularFireAuthModule,
-    FormsModule
+    FormsModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]
