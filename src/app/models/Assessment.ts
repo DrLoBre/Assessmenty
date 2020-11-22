@@ -18,6 +18,6 @@ export class Assessment {
             applied: this.applied,
             deadline: this.deadline,
             status: this.status
-        }
+        };
     }
 }

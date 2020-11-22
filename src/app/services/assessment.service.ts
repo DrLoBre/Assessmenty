@@ -20,7 +20,14 @@ export class AssessmentService {
     return this.overview;
   }
 
-  addAssessment(assessment: any): void {
-    this.firestore.collection('Assessments').add(assessment);
+  addAssessment(assessment: Assessment): void {
+    this.firestore.collection('Assessments').add(assessment.toPlainObj());
+  }
+
+  deleteAssessment(data): unknown {
+    return this.firestore
+      .collection('Assessment')
+      .doc(data.eventId)
+      .delete();
   }
 }

@@ -15,6 +15,7 @@
                     About Me
                   </button>
                   <button type="button" class="btn my-2 my-sm-0" data-toggle="modal" data-target="#exampleModal">My Rating</button>
+                  <button type="button" class="btn my-2 my-sm-0" data-toggle="modal" data-target="#addModal" *ngIf="userInfo && userInfo.role === 'master'" (click)="open(addform)">Add Assessment</button>
                   <div class="dropdown-divider"></div>
                   <button class="btn my-2 my-sm-0" type="submit" (click)="onLogOut()">Log Out</button>
                 </div>
@@ -23,6 +24,7 @@
     </div>
 </nav>
 
+<!-- About me Modal -->
 <div class="modal fade" id="aboutMeModal" tabindex="-1" aria-hidden="true" *ngIf="userInfo">
   <!-- ngIf to avoid undefined Error  -->
   <div class="modal-dialog">
@@ -41,3 +43,71 @@
     </div>
   </div>
 </div>
+
+<!-- Add Assesment Modal -->
+<ng-template #addform let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Add Assessment</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="basic-addon1">T</span>
+      </div>
+      <input #title type="text" class="form-control" placeholder="Title" aria-label="Title" aria-describedby="basic-addon1">
+    </div>
+
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="basic-addon2">^</span>
+      </div>
+      <input #principal type="text" class="form-control" placeholder="Principal" aria-label="Principal" aria-describedby="basic-addon1">
+    </div>
+
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="basic-addon3">@</span>
+      </div>
+      <input #client type="text" class="form-control" placeholder="Client" aria-label="Client" aria-describedby="basic-addon1">
+    </div>
+
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="basic-addon4">Applied</span>
+      </div>
+      <input #applied id="datepicker1" class="form-control" placeholder="yyyy-mm-dd-hh:mm" name="dp" ngbDatepicker #dp1="ngbDatepicker" aria-describedby="basic-addon1">
+      <div class="input-group-append">
+        <button class="btn btn-outline-secondary calendar" (click)="dp1.toggle()" type="button">D</button>
+      </div>
+    </div>
+
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="basic-addon5">Deadline</span>
+      </div>
+      <input #deadline class="form-control" placeholder="yyyy-mm-dd-hh:mm" name="dp" ngbDatepicker #dp2="ngbDatepicker">
+      <div class="input-group-append">
+        <button class="btn btn-outline-secondary calendar" (click)="dp2.toggle()" type="button">D</button>
+      </div>
+    </div>
+
+    <div class="input-group">
+      <div class="input-group-prepend">
+        <span class="input-group-text">-></span>
+      </div>
+      <textarea #description class="form-control" aria-label="Description" placeholder="Description"></textarea>
+    </div>
+
+  </div>
+
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark"
+            [disabled]="!title.value.length || !client.value.length || !principal.value.length || !applied.value.length || !deadline.value.length || !description.value.length"
+            (click)="onAddAssessment(title.value, principal.value, client.value, applied.value, deadline.value, description.value)">
+      Post
+    </button>
+  </div>
+</ng-template>
