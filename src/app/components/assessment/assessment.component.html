@@ -7,7 +7,7 @@
     </div>
 </div>
 
-<!-- Modal -->
+<!-- Info Modal -->
 <ng-template #content let-modal>
   <div class="modal-header">
     <h4 class="modal-title" id="modal-basic-title">{{ assessment.title }}</h4>
@@ -28,6 +28,21 @@
     </ul>
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Finished click')">Finished</button>
+    <button type="button" class="btn btn-primary" (click)="open(sure)">Finished</button>
+  </div>
+</ng-template>
+
+
+<!-- You sure Modal -->
+<ng-template #sure let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title2">Sure you are finished?</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-primary" (click)="modal.dismiss('No click')">No</button>
+    <button type="button" class="btn btn-primary" (click)="onFinish()">Yes</button>
   </div>
 </ng-template>

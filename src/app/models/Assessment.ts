@@ -8,6 +8,7 @@ export class Assessment {
     applied: firestore.Timestamp;
     deadline: firestore.Timestamp;
     status: string;
+    eventId: string;
 
     toPlainObj(): object {
         return {
@@ -17,7 +18,8 @@ export class Assessment {
             client: this.client,
             applied: this.applied,
             deadline: this.deadline,
-            status: this.status
+            status: this.status,
+            eventId: this.eventId
         };
     }
 }

@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Assessment } from '../../models/Assessment';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { AssessmentService } from '../../services/assessment.service';
 
 
 @Component({
@@ -14,10 +15,19 @@ export class AssessmentComponent implements OnInit {
 
   closeResult = '';
 
-  constructor(private modalService: NgbModal) { }
+  constructor(private modalService: NgbModal, private assessmentService: AssessmentService) { }
 
   ngOnInit(): void {
   }
+
+  onFinish(): void {
+    const newAssessment = this.assessment;
+    newAssessment.status = 'Finished';
+
+    this.assessmentService.editAssessment(newAssessment);
+    this.modalService.dismissAll();
+  }
+
   open(content): void {
     this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;

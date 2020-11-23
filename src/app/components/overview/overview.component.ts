@@ -1,7 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { AssessmentService } from '../../services/assessment.service';
-import { Assessment } from '../../models/Assessment';
-import { Router } from '@angular/router';
+import {Component, OnInit} from '@angular/core';
+import {AssessmentService} from '../../services/assessment.service';
+import {Assessment} from '../../models/Assessment';
 
 @Component({
   selector: 'app-overview',
@@ -15,7 +14,7 @@ export class OverviewComponent implements OnInit {
 
   constructor(
     public assessmentService: AssessmentService
-    ) { }
+  ) { }
 
   ngOnInit(): void {
     this.assessmentService.getAssessments().subscribe(assessments => {

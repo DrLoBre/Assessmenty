@@ -27,7 +27,20 @@ export class AssessmentService {
   deleteAssessment(data): unknown {
     return this.firestore
       .collection('Assessment')
-      .doc(data.eventId)
+      .doc(data.eventI)
       .delete();
+  }
+
+  editAssessment(assessment: Assessment): void {
+
+    this.firestore.doc(`Assessments/` + assessment.eventId).set({
+      title: assessment.title,
+      description: assessment.description,
+      principal: assessment.principal,
+      client: assessment.client,
+      applied: assessment.applied,
+      deadline: assessment.deadline,
+      status: assessment.status
+    });
   }
 }
