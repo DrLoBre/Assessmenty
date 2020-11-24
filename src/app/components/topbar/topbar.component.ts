@@ -41,6 +41,7 @@ export class TopbarComponent implements OnInit {
   onAddAssessment(title: string, principal: string, client: string, applied: string, deadline: string, description: string): void {
     const assessment = new Assessment();
 
+    assessment.eventId = null;
     assessment.title = title;
     assessment.description = description;
     assessment.principal = principal;

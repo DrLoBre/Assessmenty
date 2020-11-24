@@ -1,7 +1,10 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { Assessment } from '../../models/Assessment';
-import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { AssessmentService } from '../../services/assessment.service';
+import {Component, OnInit, Input} from '@angular/core';
+import {Assessment} from '../../models/Assessment';
+import {ModalDismissReasons, NgbModal, NgbModalConfig} from '@ng-bootstrap/ng-bootstrap';
+import {AssessmentService} from '../../services/assessment.service';
+import {AuthService} from '../../services/auth.service';
+import {User} from '../../models/User';
+import * as firebase from 'firebase';
 
 
 @Component({
@@ -14,10 +17,26 @@ export class AssessmentComponent implements OnInit {
   @Input() assessment: Assessment;
 
   closeResult = '';
+  user: firebase.User;
+  userInfo: User;
 
-  constructor(private modalService: NgbModal, private assessmentService: AssessmentService) { }
+  constructor(
+    private modalService: NgbModal,
+    private assessmentService: AssessmentService,
+    private authService: AuthService,
+    private config: NgbModalConfig
+  ) {
+    config.backdrop = 'static';
+    config.keyboard = false;
+  }
 
   ngOnInit(): void {
+    this.authService.getUserState().subscribe(user => {
+      this.user = user;
+      this.authService.getUserEntry(this.user.uid).subscribe(userData => {
+        this.userInfo = userData;
+      });
+    });
   }
 
   onFinish(): void {
@@ -25,6 +44,11 @@ export class AssessmentComponent implements OnInit {
     newAssessment.status = 'Finished';
 
     this.assessmentService.editAssessment(newAssessment);
+    this.modalService.dismissAll();
+  }
+
+  onDelete(): void {
+    this.assessmentService.deleteAssessment(this.assessment);
     this.modalService.dismissAll();
   }
 

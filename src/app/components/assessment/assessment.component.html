@@ -28,7 +28,12 @@
     </ul>
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn btn-primary" (click)="open(sure)">Finished</button>
+    <button type="button" class="btn btn-primary" (click)="open(sure)" *ngIf="assessment.status != 'Finished'">
+      Finished
+    </button>
+    <button type="button" class="btn btn-dark" (click)="open(delete)"
+            *ngIf="assessment.status == 'Finished' && userInfo.role == 'master'">Delete
+    </button>
   </div>
 </ng-template>
 
@@ -42,7 +47,21 @@
     </button>
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn btn-primary" (click)="modal.dismiss('No click')">No</button>
-    <button type="button" class="btn btn-primary" (click)="onFinish()">Yes</button>
+    <button type="button" class="btn btn-secondary" (click)="modal.dismiss('No click')">No</button>
+    <button type="button" class="btn btn-success" (click)="onFinish()">Yes</button>
+  </div>
+</ng-template>
+
+<!-- Delete Modal -->
+<ng-template #delete let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title3">Sure you want to delete?</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="modal.dismiss('No click')">No</button>
+    <button type="button" class="btn btn-success" (click)="onDelete()">Yes</button>
   </div>
 </ng-template>

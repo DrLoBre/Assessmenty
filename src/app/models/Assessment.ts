@@ -18,8 +18,7 @@ export class Assessment {
             client: this.client,
             applied: this.applied,
             deadline: this.deadline,
-            status: this.status,
-            eventId: this.eventId
+            status: this.status
         };
     }
 }

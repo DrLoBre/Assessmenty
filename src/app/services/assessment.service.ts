@@ -24,10 +24,10 @@ export class AssessmentService {
     this.firestore.collection('Assessments').add(assessment.toPlainObj());
   }
 
-  deleteAssessment(data): unknown {
+  deleteAssessment(assessment: Assessment): unknown {
     return this.firestore
-      .collection('Assessment')
-      .doc(data.eventI)
+      .collection('Assessments')
+      .doc(assessment.eventId)
       .delete();
   }
 
