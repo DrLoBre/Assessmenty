@@ -1,9 +1,19 @@
 <div class="list-group">
-    <a href="#" class="list-group-item list-group-item-action active">
-      Filter options
-    </a>
-    <a href="#" class="list-group-item list-group-item-action">All</a>
-    <a href="#" class="list-group-item list-group-item-action">Today</a>
-    <a href="#" class="list-group-item list-group-item-action">This week</a>
-    <a href="#" class="list-group-item list-group-item-action">This month</a>
+  <a href="#" class="list-group-item list-group-item-action active">
+    Filter options
+  </a>
+  <a href="#" class="list-group-item list-group-item-action">All</a>
+
+  <div class="input-group">
+    <div class="input-group-prepend">
+      <div class="input-group-text">
+        <input type="checkbox" aria-label="Checkbox for following text input">
+      </div>
+    </div>
+    <input type="text" class="form-control" aria-label="Text input with checkbox" [disabled]="true" placeholder="Finished">
+  </div>
+
+  <a href="#" class="list-group-item list-group-item-action">Today</a>
+  <a href="#" class="list-group-item list-group-item-action">This week</a>
+  <a href="#" class="list-group-item list-group-item-action">This month</a>
 </div>
